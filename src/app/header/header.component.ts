@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DataserveService } from '../dataserve.service';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,82 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   
-  constructor() { }
-  item;
-  tab=document.getElementById("tab");
-  fruit = [
-    {
-        "name":"Apple",
-        "category":"Fruit",
-        "price":100,
-        "quantity":0,
-
-    },
-    {
-        "name":"Mango",
-        "category":"Fruit",
-        "price":50,
-        "quantity":0,
-
-    },
-    {
-        "name":"Banana",
-        "category":"Fruit",
-        "price":30,
-        "quantity":0,
-
-    },
-    {
-        "name":"Papaya",
-        "category":"Fruit",
-        "price":35,
-        "quantity":0,
-
-    },
-    {
-        "name":"Grapes",
-        "category":"Fruit",
-        "price":45,
-        "quantity":0,
-
-    },
-    {
-        "name":"Pomegranate",
-        "category":"Fruit",
-        "price":50,
-        "quantity":0,
-
-    },
-    {
-        "name":"Plum",
-        "category":"Fruit",
-        "price":30,
-        "quantity":0,
-
-    },
-    {
-        "name":"Cherry",
-        "category":"Fruit",
-        "price":35,
-        "quantity":0,
-
-    },
-    {
-        "name":"Guava",
-        "category":"Fruit",
-        "price":40,
-        "quantity":0,
-
-    },
-    {
-        "name":"Melon",
-        "category":"Fruit",
-        "price":50,
-        "quantity":0,
-
-    },
-];
-
+  constructor(private serve:DataserveService,private route:Router) { }
+  
   openNav() {
     document.getElementById("mySidenav").style.width = "200px";
 }
@@ -91,6 +18,10 @@ export class HeaderComponent implements OnInit {
     document.getElementById("mySidenav").style.width = "0";
 }
 
+select(str){
+    this.serve.selectOption(str);
+    this.route.navigate(['/fruits']);
+}
 
   ngOnInit() {
   }
